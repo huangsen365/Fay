@@ -359,9 +359,12 @@ class FeiFei:
     #面板播放声音
     def __play_sound(self):
         try:
+            import os
+            # 当运行在无声卡环境（如Docker容器）时，使用dummy驱动避免ALSA报错
+            os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
             import pygame
             pygame.mixer.init()  # 初始化pygame.mixer，只需要在此处初始化一次, 如果初始化失败，则不播放音频
-        except Exception as e:
+        except Exception:
             util.printInfo(1, "System", "音频播放初始化失败,本机无法播放音频")
             return
         
