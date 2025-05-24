@@ -79,7 +79,8 @@ gpt_base_url = http://127.0.0.1:5010/v1
 gpt_api_key = <your key>
 ```
 
-若这些服务未启动或网络不可达，启动时可能会在终端看到 `Connection error.` 提示，请检查配置并确保相关服务正在运行。
+若这些服务未启动或网络不可达，启动或交互时可能会在终端看到 `Connection error.` 提示。
+请检查 `system.conf` 中 `gpt_base_url` 等设置是否正确，并确保 ASR、TTS 和语言模型服务均已启动并可访问。
 
 ### **音频设备问题**
 在无声卡环境（如部分 Docker 容器）运行时，`pygame` 初始化音频输出可能导致 `ALSA lib` 报错。框架在代码中自动设置 `SDL_AUDIODRIVER=dummy` 以避免该问题，如仍有报错可手动在启动前设置：
