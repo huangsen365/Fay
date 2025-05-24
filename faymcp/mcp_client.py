@@ -40,6 +40,11 @@ class McpClient:
             # 如果当前线程没有事件循环，创建一个新的
             self.event_loop = asyncio.new_event_loop()
             asyncio.set_event_loop(self.event_loop)
+        # 设置异常处理，避免异步任务未捕获错误
+        def _handle_async_exception(loop, context):
+            msg = context.get('exception') or context.get('message')
+            logger.error(f"Asyncio error: {msg}")
+        self.event_loop.set_exception_handler(_handle_async_exception)
     
     async def _connect_async(self):
         """
@@ -56,9 +61,13 @@ class McpClient:
                 headers['Authorization'] = f'Bearer {self.api_key}'
                 
             # 增加超时设置
-            streams = await self.exit_stack.enter_async_context(
-                sse_client(url=self.server_url, timeout=60, headers=headers)  # 增加超时时间到60秒并传递请求头
-            )
+            try:
+                streams = await self.exit_stack.enter_async_context(
+                    sse_client(url=self.server_url, timeout=60, headers=headers)
+                )
+            except* Exception as eg:
+                logger.error(f"SSE连接异常: {eg}")
+                return False, f"SSE连接异常: {eg}"
             logger.info("SSE 连接已建立")
             
             # 创建会话

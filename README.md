@@ -110,7 +110,7 @@ docker build -t fay -f docker/Dockerfile .
 运行（容器会自动启动 Fay 服务）
 
 ```bash
-docker run -it --rm -p 5000:5000 -p 10001:10001 -p 10002:10002 -p 10003:10003 fay
+docker run -it --rm -p 5010:5010 -p 5000:5000 -p 10001:10001 -p 10002:10002 -p 10003:10003 fay
 ```
 
 
