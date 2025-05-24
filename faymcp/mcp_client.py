@@ -65,7 +65,7 @@ class McpClient:
                 streams = await self.exit_stack.enter_async_context(
                     sse_client(url=self.server_url, timeout=60, headers=headers)
                 )
-            except* Exception as eg:
+            except Exception as eg:
                 logger.error(f"SSE连接异常: {eg}")
                 return False, f"SSE连接异常: {eg}"
             logger.info("SSE 连接已建立")
