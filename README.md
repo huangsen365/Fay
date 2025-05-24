@@ -71,7 +71,7 @@ pip install -r requirements.txt
 ### **启动**
 启动Fay控制器
 ```shell
-python main.py
+python main.py start
 ```
 
 
@@ -86,7 +86,7 @@ python main.py
 docker build -t fay -f docker/Dockerfile .
 ```
 
-运行
+运行（容器会自动启动 Fay 服务）
 
 ```bash
 docker run -it --rm -p 5000:5000 -p 10001:10001 -p 10002:10002 -p 10003:10003 fay

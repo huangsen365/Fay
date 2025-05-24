@@ -17,5 +17,5 @@ RUN apt-get update -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip install --no-cache-dir -r docker/requirements.txt
 
-CMD ["python", "main.py"]
+CMD ["python", "main.py", "start"]
 
