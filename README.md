@@ -68,6 +68,26 @@ pip install -r requirements.txt
 ### **配置**
 + 仓库已提供默认的 `system.conf` 文件，可按需修改
 
+### **依赖说明**
+Fay 需要外部语音识别（ASR）、语音合成（TTS）和大语言模型（LLM）等服务配合使用，上述地址和密钥均在 `system.conf` 中配置。例如：
+
+```ini
+ASR_mode = funasr
+local_asr_ip = 127.0.0.1
+local_asr_port = 10197
+gpt_base_url = http://127.0.0.1:5010/v1
+gpt_api_key = <your key>
+```
+
+若这些服务未启动或网络不可达，启动时可能会在终端看到 `Connection error.` 提示，请检查配置并确保相关服务正在运行。
+
+### **音频设备问题**
+在无声卡环境（如部分 Docker 容器）运行时，`pygame` 初始化音频输出可能导致 `ALSA lib` 报错。框架在代码中自动设置 `SDL_AUDIODRIVER=dummy` 以避免该问题，如仍有报错可手动在启动前设置：
+
+```bash
+export SDL_AUDIODRIVER=dummy
+```
+
 ### **启动**
 启动Fay控制器
 ```shell
