@@ -66,7 +66,7 @@ pip install -r requirements.txt
 ```
 
 ### **配置**
-+ 依照说明修改 `./system.conf` 文件
++ 仓库已提供默认的 `system.conf` 文件，可按需修改
 
 ### **启动**
 启动Fay控制器
@@ -78,7 +78,7 @@ python main.py
 
 ## **或 Docker 启动**
 
-1. 克隆仓库并修改 `./system.conf` 文件
+1. 克隆仓库（已包含默认 `system.conf`，可按需修改）
 2. 使用下列命令构建镜像（修改配置后需要重新 build）。Dockerfile 会自动安装构建依赖
 
 
