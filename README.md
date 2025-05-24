@@ -76,19 +76,18 @@ python main.py
 
 
 
-## **或docker 启动**
+## **或 Docker 启动**
 
-1. 下载助理版
-https://github.com/xszyou/Fay
-2.  修改 `./system.conf` 文件
-3. 删除requirements.txt下pyqt5~=5.15.6
+1. 克隆仓库并修改 `./system.conf` 文件
+2. 使用下列命令构建镜像（修改配置后需要重新 build）。Dockerfile 会自动安装构建依赖
 
-build （修改配置文件后，需要重新build）
-```shell
-docker build  -t fay ./fay-assistant-edition
+```bash
+docker build -t fay -f docker/Dockerfile .
 ```
-run
-```shell
+
+运行
+
+```bash
 docker run -it --rm -p 5000:5000 -p 10001:10001 -p 10002:10002 -p 10003:10003 fay
 ```
 
