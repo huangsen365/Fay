@@ -1,7 +1,6 @@
 FROM python:3.12
 
 # Set working directory
-=======
 # Set work directory
 WORKDIR /app
 
