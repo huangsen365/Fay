@@ -474,6 +474,8 @@ def question(content, username, observation=None):
 
         except requests.exceptions.RequestException as e:
             util.log(1, f"请求失败: {e}")
+            if isinstance(e, requests.exceptions.ConnectionError):
+                util.log(1, "无法连接到语言模型服务，请检查 system.conf 中 gpt_base_url 是否正确并确保该服务已启动")
             error_message = "抱歉，我现在太忙了，休息一会，请稍后再试。"
             stream_manager.new_instance().write_sentence(username, "_<isfirst>" + error_message + "_<isend>")
             full_response_text = error_message
