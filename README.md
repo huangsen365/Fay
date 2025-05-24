@@ -81,6 +81,7 @@ python main.py
 1. 克隆仓库并修改 `./system.conf` 文件
 2. 使用下列命令构建镜像（修改配置后需要重新 build）。Dockerfile 会自动安装构建依赖
 
+
 ```bash
 docker build -t fay -f docker/Dockerfile .
 ```
