@@ -16,7 +16,6 @@ RUN apt-get update -y && \
         libxdamage1 libxtst6 && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip install --no-cache-dir -r docker/requirements.txt
-=======
 # Install Python dependencies
 RUN pip install --no-cache-dir -r docker/requirements.txt
 
